@@ -34,38 +34,35 @@
                 <img class="login"
                      src="{{ url_for('static', filename='img/contacts-128.gif') }}" alt="Your Image">
                 </svg>
-                <input class="input" id="fullName" placeholder="Фамилия Имя">
+                <input class="input" id="fullName" placeholder="Фамилия Имя" required>
 
                 <!-- Поле 2 с иконкой -->
                 <img class="lock"
                      src="{{ url_for('static', filename='img/add-user-2-128.gif') }}" alt="Your Image">
                 </svg>
-                <input class="input" id="passengerCount" type="number" placeholder="Кол-во пассажиров">
+                <input class="input" id="passengerCount" type="number" placeholder="Кол-во пассажиров" required min="1"
+                       max="20">
 
                 <!-- Поле 3 с иконкой -->
                 <img class="btn_3"
                      src="{{ url_for('static', filename='img/phone-128.gif') }}" alt="Your Image">
-                <input class="input" id="phone" type="tel" placeholder="Телефон">
-
-
+                <input class="input" id="phone" type="tel" placeholder="Телефон" required>
 
                 <img class="date_run"
                      src="{{ url_for('static', filename='img/wedding-day-128.gif') }}" alt="Your Image">
-                <input class="input" id="departureDate" placeholder="Дата выезда">
-
+                <input class="input" id="departureDate" placeholder="Дата выезда" required>
 
                 <img class="come_from"
                      src="{{ url_for('static', filename='img/map-marker-2-128.gif') }}" alt="Your Image">
-                <input class="input" id="fromLocation" placeholder="Откуда">
-
+                <input class="input" id="fromLocation" placeholder="Откуда" required>
 
                 <img class="come_where"
                      src="{{ url_for('static', filename='img/map-marker-2-128.gif') }}" alt="Your Image">
-                <input class="input" id="toLocation" placeholder="Куда">
-
+                <input class="input" id="toLocation" placeholder="Куда" required>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- partial -->

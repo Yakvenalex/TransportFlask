@@ -1,6 +1,46 @@
 let tg = window.Telegram.WebApp;
 
+
+function validateFields() {
+    var fullName = document.getElementById('fullName').value;
+    var passengerCount = document.getElementById('passengerCount').value;
+    var phone = document.getElementById('phone').value;
+    var departureDate = document.getElementById('departureDate').value;
+    var fromLocation = document.getElementById('fromLocation').value;
+    var toLocation = document.getElementById('toLocation').value;
+
+    if (fullName === '' || passengerCount === '' || phone === '' || departureDate === '' || fromLocation === '' || toLocation === '') {
+        alert('Пожалуйста, заполните все поля.');
+        return false;
+    }
+
+    return true;
+}
+
+
+function validateNumPass() {
+    var passengerCount = document.getElementById('passengerCount').value;
+    if (parseInt(passengerCount) > 0 && parseInt(passengerCount) < 20) {
+        return true;
+    } else {
+        alert('Количество пассажиров должно быть от 1 до 20!');
+        return false;
+    }
+}
+
+
+
 function materialClick(event) {
+    if (!validateFields()) {
+        return; // Не продолжаем выполнение, если поля не заполнены
+    }
+
+    if (!validateNumPass()) {
+        return; // Не продолжаем выполнение, если поля не заполнены
+    }
+
+    var fullName = document.getElementById('fullName').value;
+
     // Получаем элементы с классами inputs и button-container
     var inputsContainer = document.querySelector('.inputs');
     var buttonContainer = document.querySelector('.button-container');
@@ -23,8 +63,9 @@ function materialClick(event) {
     buttonContainer.removeChild(document.getElementById('bookingButton'));
     buttonContainer.appendChild(closeButton);
 
+
     // Запускаем анимацию (лоадер) на короткое время (в данном случае, 2 секунды)
-    setTimeout(function() {
+    setTimeout(function () {
         loader.style.display = 'none';
         // Показываем сообщение "Спасибо за бронь" с задержкой
         var messageContainer = document.querySelector('.message_block');
