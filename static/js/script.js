@@ -19,11 +19,15 @@ function validateFields() {
 
 
 function validateNumPass() {
-    var passengerCount = document.getElementById('passengerCount').value;
-    if (parseInt(passengerCount) > 0 && parseInt(passengerCount) < 20) {
+    var passengerCount = document.getElementById('passengerCount');
+    var countValue = parseInt(passengerCount.value);
+
+    if (countValue > 0 && countValue < 20) {
+        passengerCount.style.border = "none"; // Убираем подсветку
         return true;
     } else {
-        alert('Количество пассажиров должно быть от 1 до 20!');
+        passengerCount.style.borderBottom = "1px solid red"; // Подсвечиваем красным
+        alert('Количество пассажиров должно быть от 1 до 20!'); // Выводим уведомление
         return false;
     }
 }
