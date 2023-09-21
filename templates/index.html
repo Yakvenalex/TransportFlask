@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Invision login - dribbble remake</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="main">
+    <div class="bg"></div>
+    <div class="bg2"></div>
+    <div class="content">
+        <div class="button-container">
+            <button id="bookingButton" class="button" onclick="materialClick(event)">
+                <div class="circle animate"></div>
+                <span class="sign-in">ЗАБРОНИРОВАТЬ</span>
+                <div class="loader"></div>
+            </button>
+        </div>
+
+
+        <div class="message_block">
+            <div class="my_msg"><p>Бронь принята!</p>
+                <p>Скоро с вами свяжется диспетчер для уточнения деталей</p>
+            </div>
+
+        </div>
+
+        <div class="controls">
+            <div class="inputs">
+                <!-- Поле 1 с иконкой -->
+                <img class="login"
+                     src="{{ url_for('static', filename='img/contacts-128.gif') }}" alt="Your Image">
+                </svg>
+                <input class="input" id="fullName" placeholder="Фамилия Имя">
+
+                <!-- Поле 2 с иконкой -->
+                <img class="lock"
+                     src="{{ url_for('static', filename='img/add-user-2-128.gif') }}" alt="Your Image">
+                </svg>
+                <input class="input" id="passengerCount" type="number" placeholder="Кол-во пассажиров">
+
+                <!-- Поле 3 с иконкой -->
+                <img class="btn_3"
+                     src="{{ url_for('static', filename='img/phone-128.gif') }}" alt="Your Image">
+                <input class="input" id="phone" type="tel" placeholder="Телефон">
+
+
+
+                <img class="date_run"
+                     src="{{ url_for('static', filename='img/wedding-day-128.gif') }}" alt="Your Image">
+                <input class="input" id="departureDate" placeholder="Дата выезда">
+
+
+                <img class="come_from"
+                     src="{{ url_for('static', filename='img/map-marker-2-128.gif') }}" alt="Your Image">
+                <input class="input" id="fromLocation" placeholder="Откуда">
+
+
+                <img class="come_where"
+                     src="{{ url_for('static', filename='img/map-marker-2-128.gif') }}" alt="Your Image">
+                <input class="input" id="toLocation" placeholder="Куда">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- partial -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
