@@ -43,8 +43,6 @@ function materialClick(event) {
         return; // Не продолжаем выполнение, если поля не заполнены
     }
 
-    var fullName = document.getElementById('fullName').value;
-
     // Получаем элементы с классами inputs и button-container
     var inputsContainer = document.querySelector('.inputs');
     var buttonContainer = document.querySelector('.button-container');
@@ -56,7 +54,7 @@ function materialClick(event) {
     var loader = document.querySelector('.loader');
     loader.style.display = 'block';
 
-    // Заменяем текущую кнопку новой
+    // Удаляем кнопку
     buttonContainer.removeChild(document.getElementById('bookingButton'));
 
     // Запускаем анимацию (лоадер) на короткое время (в данном случае, 2 секунды)
@@ -87,5 +85,5 @@ function materialClick(event) {
 
             tg.close()
         }, 2000); // Пауза в 2 секунды перед отправкой данных и закрытием
-    }, 1000); // 2 секунды до отображения сообщения
+    }, 1000); // 1 секунда до отображения сообщения
 }
