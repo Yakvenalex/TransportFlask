@@ -32,58 +32,47 @@ function validateNumPass() {
     }
 }
 
-
-
 function materialClick(event) {
-    if (!validateFields()) {
-        return; // Не продолжаем выполнение, если поля не заполнены
+    if (!validateFields() || !validateNumPass()) {
+        return; // Не продолжаем выполнение, если поля не заполнены или есть ошибки
     }
 
-    if (!validateNumPass()) {
-        return; // Не продолжаем выполнение, если поля не заполнены
-    }
-
-    // Получаем элементы с классами inputs и button-container
     var inputsContainer = document.querySelector('.inputs');
     var buttonContainer = document.querySelector('.button-container');
-
-    // Скрываем элементы
-    inputsContainer.style.display = 'none';
-
-    // Показываем анимацию (лоадер)
     var loader = document.querySelector('.loader');
-    loader.style.display = 'block';
+    var messageContainer = document.querySelector('.message_block');
 
-    // Удаляем кнопку
+    inputsContainer.style.display = 'none';
+    loader.style.display = 'block';
     buttonContainer.removeChild(document.getElementById('bookingButton'));
 
-    // Запускаем анимацию (лоадер) на короткое время (в данном случае, 2 секунды)
+    var formData = new FormData(document.querySelector('form'));
+    var userData = tg.initDataUnsafe.user;
+
+
+    formData.append('user_id', userData.id);
+    formData.append('notifi', "not_notify");
+
+
+    fetch('/submit_form', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.text())
+        .then(data => {
+            messageContainer.style.display = 'block';
+            messageContainer.innerHTML = data;
+
+            // Выполнить tg.close() через 2 секунды
+            setTimeout(function () {
+                tg.close();
+            }, 2000);
+        })
+        .catch(error => {
+            console.error('Ошибка отправки данных на сервер:', error);
+        });
+
     setTimeout(function () {
         loader.style.display = 'none';
-        // Показываем сообщение "Спасибо за бронь" с задержкой
-        var messageContainer = document.querySelector('.message_block');
-        messageContainer.style.display = 'block';
-
-        // После отображения сообщения ждем 2 секунды и отправляем данные
-        setTimeout(function () {
-            var fullName = document.getElementById('fullName').value;
-            var passengerCount = document.getElementById('passengerCount').value;
-            var phone = document.getElementById('phone').value;
-            var departureDate = document.getElementById('departureDate').value;
-            var fromLocation = document.getElementById('fromLocation').value;
-            var toLocation = document.getElementById('toLocation').value;
-
-            let data = {
-                fullName: fullName,
-                passengerCount: passengerCount,
-                departureDate: departureDate,
-                fromLocation: fromLocation,
-                toLocation: toLocation,
-                phone: phone
-            }
-            tg.sendData(JSON.stringify(data))
-
-            tg.close()
-        }, 2000); // Пауза в 2 секунды перед отправкой данных и закрытием
-    }, 1000); // 1 секунда до отображения сообщения
+    }, 2000); // Пауза в 2 секунды после отправки данных
 }

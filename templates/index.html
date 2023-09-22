@@ -12,12 +12,14 @@
     <div class="bg"></div>
     <div class="bg2"></div>
     <div class="content">
+
         <div class="button-container">
-            <button id="bookingButton" class="button" onclick="materialClick(event)">
+            <button id="bookingButton" class="button" type="submit" onclick="materialClick(event)">
                 <div class="circle animate"></div>
                 <span class="sign-in">ЗАБРОНИРОВАТЬ</span>
                 <div class="loader"></div>
             </button>
+
         </div>
 
 
@@ -29,37 +31,40 @@
         </div>
 
         <div class="controls">
+            <form method="POST" action="/submit_form">
             <div class="inputs">
                 <!-- Поле 1 с иконкой -->
                 <img class="login"
                      src="{{ url_for('static', filename='img/contacts-128.gif') }}" alt="Your Image">
                 </svg>
-                <input class="input" id="fullName" placeholder="Фамилия Имя" required>
+                <input class="input" id="fullName" name="full_name" placeholder="Фамилия Имя" required>
 
                 <!-- Поле 2 с иконкой -->
                 <img class="lock"
                      src="{{ url_for('static', filename='img/add-user-2-128.gif') }}" alt="Your Image">
                 </svg>
-                <input class="input" id="passengerCount" type="number" placeholder="Кол-во пассажиров" required min="1"
+                <input class="input" id="passengerCount" name="passenger_count" type="number" placeholder="Кол-во пассажиров" required min="1"
                        max="20">
 
                 <!-- Поле 3 с иконкой -->
                 <img class="btn_3"
                      src="{{ url_for('static', filename='img/phone-128.gif') }}" alt="Your Image">
-                <input class="input" id="phone" type="tel" placeholder="Телефон" required>
+                <input class="input" id="phone" name="phone" type="tel" placeholder="Телефон" required>
 
                 <img class="date_run"
                      src="{{ url_for('static', filename='img/wedding-day-128.gif') }}" alt="Your Image">
-                <input class="input" id="departureDate" placeholder="Дата выезда" required>
+                <input class="input" id="departureDate" name="departure_date" placeholder="Дата выезда" required>
 
                 <img class="come_from"
                      src="{{ url_for('static', filename='img/map-marker-2-128.gif') }}" alt="Your Image">
-                <input class="input" id="fromLocation" placeholder="Откуда" required>
+                <input class="input" id="fromLocation" name="from_loc" placeholder="Откуда" required>
 
                 <img class="come_where"
                      src="{{ url_for('static', filename='img/map-marker-2-128.gif') }}" alt="Your Image">
-                <input class="input" id="toLocation" placeholder="Куда" required>
+                <input class="input" id="toLocation" name="to_loc" placeholder="Куда" required>
+
             </div>
+                </form>
         </div>
     </div>
 </div>
